@@ -63,34 +63,34 @@ class SecondaryActivity : AppCompatActivity() {
     }
 
 
-    private fun createDepartures(jsonString:String): MutableList<Departure> {
+    private fun createDepartures(jsonArray:List<String>): MutableList<Departure> {
         val g = Gson()
         val departuresList = mutableListOf<Departure>()
-
-                var currentDeparture: Departure = g.fromJson(jsonString, Departure::class.java)
-                println(currentDeparture)
+            for (i in jsonArray) {
+                val currentDeparture: Departure = g.fromJson(i, Departure::class.java)
+//                println(currentDeparture)
                 departuresList.add(currentDeparture)
+            }
         return departuresList
             }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_secondary)
         var departsString:String = sendGet()
 //        println(stops)
         departsString = departsString.substring(12)
 //        println(departs)
         departsString = departsString.replace("}, {","}#{")
-        var departsList = departsString.split("#")
-        for (i in departsList){println(i)}
+        var departsStringList = departsString.split("#")
+        for (i in departsStringList){println(i)}
 
-
-
-//        var departureList = createDepartures(departs)
+        var departureList = createDepartures(departsStringList)
 //        println(departureList)
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, stopsList)
-//        val listView: ListView = findViewById(R.id.ListView)
-//        listView.adapter = adapter
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_secondary)
+        val adapter2 = ArrayAdapter(this, android.R.layout.simple_list_item_1, departureList)
+        val listView2: ListView = findViewById(R.id.ListView2)
+        listView2.adapter = adapter2
+
     }
 }
