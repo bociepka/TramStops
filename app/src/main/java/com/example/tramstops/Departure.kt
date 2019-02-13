@@ -11,7 +11,7 @@ class Departure (
 
 
     override fun toString(): String {
-        val res:String = display_time+" "+line_number+" "+direction
+        val res:String = "Odjazd: "+display_time+" Linia: "+line_number+"\n "+direction
         return res
     }
 }
