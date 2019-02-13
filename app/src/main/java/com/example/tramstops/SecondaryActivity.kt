@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.SimpleAdapter
 import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -74,6 +75,13 @@ class SecondaryActivity : AppCompatActivity() {
         return departuresList
             }
 
+    /*private fun createDepartMap(list:MutableList<Departure>):MutableMap<String,String>{
+        val departMap : MutableMap<String,String>
+        for (i in list){
+            departMap.put(i.display_time+" Linia: "+i.line_number,i.direction)
+        }
+        return departMap
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +95,7 @@ class SecondaryActivity : AppCompatActivity() {
         for (i in departsStringList){println(i)}
 
         var departureList = createDepartures(departsStringList)
+//        var departureMap = createDepartMap(departureList)
 //        println(departureList)
         val adapter2 = ArrayAdapter(this, android.R.layout.simple_list_item_1, departureList)
         val listView2: ListView = findViewById(R.id.ListView2)
