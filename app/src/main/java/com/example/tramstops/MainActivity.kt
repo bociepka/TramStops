@@ -1,8 +1,10 @@
 package com.example.tramstops
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.google.gson.Gson
@@ -14,6 +16,10 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
+
+
+
+
     /*private fun sendGet() {
         val thread = Thread(Runnable {
             try {
@@ -75,6 +81,12 @@ class MainActivity : AppCompatActivity() {
 
 //    var lista  = Array<TramStop>(150, {i -> TramStop(i,"Stop","")})
 
+    fun chosenStop(id :String){
+        val chosenIntent = Intent(this, SecondaryActivity::class.java)
+        chosenIntent.putExtra(SecondaryActivity.STOP_ID, id)
+        startActivity(chosenIntent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 //        var count = 0
 //        for(i in lista){
@@ -88,6 +100,13 @@ class MainActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, stopsList)
         val listView: ListView = findViewById(R.id.ListView)
         listView.adapter = adapter
+
+        listView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
+            val newId:String = (id+1).toString()
+            chosenStop(newId)
+        }
+
+
 
     }
 
