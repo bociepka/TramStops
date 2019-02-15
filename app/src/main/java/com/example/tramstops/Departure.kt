@@ -12,13 +12,6 @@ class Departure (
 
 
     override fun toString(): String {
-        var result:String=""
-//        if (delay=="") {
-            result = "Odjazd: " + display_time + " Linia: " + line_number + "\n " + direction +"  "+delay
-//        }
-//        else{
-//            result = "Odjazd: " + display_time + " Linia: " + line_number + "\n " + direction + "  Opóźnienie: "+delay
-//        }
-        return result
+        return "Odjazd: " + display_time + " Linia: " + line_number + "\n " + direction +"  "+delay
     }
 }
